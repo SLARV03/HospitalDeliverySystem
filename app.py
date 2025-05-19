@@ -57,7 +57,7 @@ class HospitalDeliveryApp:
             "Administration": (100, 400)
         }
         
-        # Hospital layout graph
+# Hospital layout graph
         self.hospital = self.create_hospital_layout()
         
         # Medicine inventory
@@ -73,6 +73,13 @@ class HospitalDeliveryApp:
         self.current_delivery_index = 0
         self.delivery_in_progress = False
         self.emergency_activated = False
+        
+        # Emergency exits mapping
+        self.emergency_exits = {
+            "Ground Floor": "Emergency Exit",
+            "First Floor": "Floor 1 Emergency Exit",
+            "Second Floor": "Floor 2 Emergency Exit"
+        }
         
         # Initialize GUI
         self.setup_gui()
@@ -191,7 +198,8 @@ class HospitalDeliveryApp:
         self.delivery_listbox.pack(fill=tk.BOTH, expand=True, pady=5)
         
         # Delivery Controls
-        ttk.Button(control_frame, text="Start Delivery", command=self.start_delivery).pack(fill=tk.X, pady=5)
+        self.start_btn = ttk.Button(control_frame, text="Start Delivery", command=self.start_delivery)
+        self.start_btn.pack(fill=tk.X, pady=5)
         self.next_btn = ttk.Button(control_frame, text="Next Step", 
                                   command=self.next_step, state=tk.DISABLED)
         self.next_btn.pack(fill=tk.X, pady=5)
